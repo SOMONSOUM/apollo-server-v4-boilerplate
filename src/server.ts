@@ -6,7 +6,10 @@ import http from 'http';
 import { expressMiddleware } from '@apollo/server/express4';
 import { useServer } from 'graphql-ws/lib/use/ws';
 import { WebSocketServer } from 'ws';
+import { graphqlUploadExpress } from 'graphql-upload-minimal';
 import { schema } from './schema';
+import { config } from 'dotenv';
+config();
 
 const PORT = process.env.PORT || 8080;
 
@@ -41,6 +44,7 @@ const startApolloServer = async () => {
   });
 
   await server.start();
+  app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
   app.use(
     '/graphql',
     cors<cors.CorsRequest>(),
