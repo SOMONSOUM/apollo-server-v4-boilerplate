@@ -1,7 +1,7 @@
 import { pubsub } from '../../lib/pubsub';
 import { userResolvers } from '../../modules/users';
 import { GraphQLUpload } from 'graphql-upload-minimal';
-import { uploadMutation } from './uploadResolver';
+import { uploadResolver } from '../../modules/upload';
 
 const rootResolver = {
   Upload: GraphQLUpload,
@@ -11,7 +11,9 @@ const rootResolver = {
     },
   },
   Mutation: {
-    singleUpload: uploadMutation,
+    testingMuation: () => {
+      return true;
+    },
   },
   Subscription: {
     testingSub: {
@@ -20,4 +22,4 @@ const rootResolver = {
   },
 };
 
-export const resolvers = [rootResolver, userResolvers];
+export const resolvers = [rootResolver, userResolvers, uploadResolver];

@@ -1,6 +1,8 @@
+import gql from 'graphql-tag';
+import { uploadTypeDefs } from '../../modules/upload/uploadTypeDefs';
 import { userTypeDefs } from '../../modules/users/userTypeDefs';
 
-const rootTypeDefs = `#graphql
+const rootTypeDefs = gql`
   scalar Upload
 
   type Ok {
@@ -12,7 +14,7 @@ const rootTypeDefs = `#graphql
   }
 
   type Mutation {
-    singleUpload(file: Upload): UploadFileResponse
+    testingMuation: Boolean
   }
 
   type Subscription {
@@ -20,14 +22,11 @@ const rootTypeDefs = `#graphql
   }
 
   type UploadFileResponse {
-    filename: String
     url: String
-    fileSize: String
+    filename: String
     mimetype: String
     encoding: String
-    width: String
-    height: String
   }
 `;
 
-export const typeDefs = [rootTypeDefs, userTypeDefs];
+export const typeDefs = [rootTypeDefs, userTypeDefs, uploadTypeDefs];

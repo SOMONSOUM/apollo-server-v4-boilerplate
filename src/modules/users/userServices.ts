@@ -6,8 +6,6 @@ export class UserService {
     prisma: PrismaClient,
     user: UserInput,
   ): Promise<User> {
-    console.log(user);
-
     const newUser = await prisma.user.create({
       data: {
         ...user,

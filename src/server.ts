@@ -7,7 +7,7 @@ import { expressMiddleware } from '@apollo/server/express4';
 import { useServer } from 'graphql-ws/lib/use/ws';
 import { WebSocketServer } from 'ws';
 import { graphqlUploadExpress } from 'graphql-upload-minimal';
-import { schema } from './schema';
+import { schema } from './graphql';
 import { config } from 'dotenv';
 config();
 
@@ -27,7 +27,7 @@ const startApolloServer = async () => {
 
   const server = new ApolloServer({
     schema: schema,
-    csrfPrevention: true,
+    csrfPrevention: false,
     introspection: process.env.NODE_ENV !== 'production',
     plugins: [
       ApolloServerPluginDrainHttpServer({ httpServer }),
@@ -44,7 +44,7 @@ const startApolloServer = async () => {
   });
 
   await server.start();
-  app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
+  app.use(graphqlUploadExpress());
   app.use(
     '/graphql',
     cors<cors.CorsRequest>(),
