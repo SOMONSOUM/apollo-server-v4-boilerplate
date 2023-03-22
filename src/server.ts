@@ -39,7 +39,7 @@ const startApolloServer = async () => {
       if (authToken) {
         const userId = await verifyToken(authToken);
         if (userId?.uid) {
-          [user] = await knex.table('users').where({ id: userId });
+          [user] = await knex.table('users').where({ id: userId?.uid });
         }
       }
       user = user || null;

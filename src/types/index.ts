@@ -17,6 +17,7 @@ export type User = {
   fullname: string | null;
   phoneNumber: string | null;
   profilePicture: string | null;
+  token: string | null;
 };
 
 export interface Context {
