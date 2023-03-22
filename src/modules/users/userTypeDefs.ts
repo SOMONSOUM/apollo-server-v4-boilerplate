@@ -8,7 +8,8 @@ export const userTypeDefs = gql`
   input UserInput {
     email: String
     password: String
-    name: String
+    username: String
+    fullname: String
     phoneNumber: String
     profilePicture: String
   }

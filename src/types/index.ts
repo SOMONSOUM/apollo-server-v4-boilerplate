@@ -1,8 +1,7 @@
 import { Request, Response } from 'express';
-import { Knex } from 'knex';
+import Knex from '../database';
 
 export interface Parents {}
-
 export interface Args<T = any, ID = any> {
   input: T;
   id: ID;
@@ -14,7 +13,8 @@ export type User = {
   id: number;
   email: string;
   password: string;
-  name: string | null;
+  username: string | null;
+  fullname: string | null;
   phoneNumber: string | null;
   profilePicture: string | null;
 };
@@ -23,7 +23,7 @@ export interface Context {
   user: User | null;
   req: Request;
   res: Response;
-  knex: Knex;
+  knex: typeof Knex;
 }
 export interface Info {}
 

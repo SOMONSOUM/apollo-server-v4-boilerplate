@@ -11,7 +11,7 @@ cloudinary.v2.config({
 });
 
 export const singleUploadMutation = async (
-  parent: any,
+  _: any,
   { file }: { file: FileUpload },
 ): Promise<ApolloServerFileUploads.UploadedFileResponse> => {
   const { createReadStream, filename, mimetype, encoding } = await file;

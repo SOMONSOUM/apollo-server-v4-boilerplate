@@ -9,8 +9,9 @@ import { WebSocketServer } from 'ws';
 import { graphqlUploadExpress } from 'graphql-upload-minimal';
 import { schema } from './graphql';
 import { config } from 'dotenv';
-import createKnexContex from './lib/database';
 import { verifyToken } from './utils/jwt';
+import Knex from './database';
+import { Context, User } from './types';
 config();
 
 interface MyContext {
@@ -25,9 +26,9 @@ const PORT = process.env.PORT || 8080;
 
 const startApolloServer = async () => {
   const app = express();
-  const context = async ({ req, res }: ExpressContext) => {
-    let user = null;
-    const knex = createKnexContex().default;
+  const context = async ({ req, res }: ExpressContext): Promise<Context> => {
+    let user: User | null = null;
+    const knex = Knex;
 
     try {
       const authHeader = req.headers.authorization || '';
@@ -46,7 +47,7 @@ const startApolloServer = async () => {
       user = null;
     }
 
-    return { req, res, user, createKnexContex };
+    return { req, res, user, knex };
   };
   const httpServer = http.createServer(app);
 
