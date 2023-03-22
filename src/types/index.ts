@@ -1,5 +1,5 @@
-import { PrismaClient, User } from '@prisma/client';
 import { Request, Response } from 'express';
+import { Knex } from 'knex';
 
 export interface Parents {}
 
@@ -9,11 +9,21 @@ export interface Args<T = any, ID = any> {
 }
 
 export type ID = number;
+
+export type User = {
+  id: number;
+  email: string;
+  password: string;
+  name: string | null;
+  phoneNumber: string | null;
+  profilePicture: string | null;
+};
+
 export interface Context {
   user: User | null;
   req: Request;
   res: Response;
-  prisma: PrismaClient;
+  knex: Knex;
 }
 export interface Info {}
 

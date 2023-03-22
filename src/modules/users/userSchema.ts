@@ -8,4 +8,4 @@ export const UserSchema = z.object({
   profilePicture: z.string().optional(),
 });
 
-export type UserInput = z.infer<typeof UserSchema>;
+export type User = z.infer<typeof UserSchema>;

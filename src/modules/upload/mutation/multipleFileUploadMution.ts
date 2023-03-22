@@ -4,7 +4,9 @@ import { singleUploadMutation } from './singleFileUploadMutation';
 
 export const MultipleFileUploadMutation = async (
   parent: any,
-  { files }: { files: [FileUpload] },
+  { files }: { files: FileUpload[] },
 ): Promise<ApolloServerFileUploads.UploadedFileResponse[]> => {
-  return Promise.all(files.map((f) => singleUploadMutation(null, { file: f })));
+  return Promise.all(
+    files.map((file) => singleUploadMutation(null, { file: file })),
+  );
 };
