@@ -90,7 +90,8 @@ const startApolloServer = async () => {
 
   await server.start();
   const corsOptions: CorsOptions = {
-    // specify the CORS options here
+    origin: process.env.ORIGIN,
+    optionsSuccessStatus: 200,
   };
 
   app.use(graphqlUploadExpress());
