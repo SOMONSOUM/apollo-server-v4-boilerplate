@@ -1,7 +1,7 @@
 import { ApolloServer } from '@apollo/server';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import express, { Request, Response } from 'express';
-import cors from 'cors';
+import cors, { CorsOptions } from 'cors';
 import http from 'http';
 import { expressMiddleware } from '@apollo/server/express4';
 import { useServer } from 'graphql-ws/lib/use/ws';
@@ -13,6 +13,17 @@ import { verifyToken } from './utils/jwt';
 import Knex from './database';
 import { Context, User } from './types';
 config();
+
+type CorsOptions = {
+  origin?: boolean | string | RegExp | (string | RegExp)[] | undefined;
+  methods?: string | string[] | undefined;
+  allowedHeaders?: string | string[] | undefined;
+  exposedHeaders?: string | string[] | undefined;
+  credentials?: boolean | undefined;
+  maxAge?: number | undefined;
+  preflightContinue?: boolean | undefined;
+  optionsSuccessStatus?: number | undefined;
+};
 
 interface MyContext {
   token?: String;
@@ -78,10 +89,14 @@ const startApolloServer = async () => {
   });
 
   await server.start();
+  const corsOptions: CorsOptions = {
+    // specify the CORS options here
+  };
+
   app.use(graphqlUploadExpress());
   app.use(
     '/graphql',
-    cors<cors.CorsRequest>(),
+    cors(corsOptions),
     express.json(),
     expressMiddleware(server, {
       context: context,
