@@ -7,8 +7,10 @@ import { expressMiddleware } from '@apollo/server/express4';
 import { useServer } from 'graphql-ws/lib/use/ws';
 import { WebSocketServer } from 'ws';
 import { graphqlUploadExpress } from 'graphql-upload-minimal';
-import { schema } from './graphql';
 import { config } from 'dotenv';
+import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
+import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-plugin-landing-page-graphql-playground';
+import { schema } from './graphql';
 import { verifyToken } from './utils/jwt';
 import Knex from './database';
 import { Context, User } from './types';
@@ -72,10 +74,13 @@ const startApolloServer = async () => {
 
   const server = new ApolloServer<MyContext>({
     schema: schema,
-    csrfPrevention: false,
-    introspection: process.env.NODE_ENV !== 'production',
+    csrfPrevention: true,
+    introspection: process.env.NODE_ENV === 'production',
     plugins: [
       ApolloServerPluginDrainHttpServer({ httpServer }),
+      process.env.NODE_ENV === 'production'
+        ? ApolloServerPluginLandingPageGraphQLPlayground()
+        : ApolloServerPluginLandingPageLocalDefault({ footer: false }),
       {
         async serverWillStart() {
           return {
