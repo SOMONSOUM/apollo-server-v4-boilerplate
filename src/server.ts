@@ -1,7 +1,7 @@
 import { ApolloServer } from '@apollo/server';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import express, { Request, Response } from 'express';
-import cors, { CorsOptions } from 'cors';
+import cors from 'cors';
 import http from 'http';
 import { expressMiddleware } from '@apollo/server/express4';
 import { useServer } from 'graphql-ws/lib/use/ws';
