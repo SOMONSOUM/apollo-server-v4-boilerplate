@@ -75,7 +75,7 @@ const startApolloServer = async () => {
   const server = new ApolloServer<MyContext>({
     schema: schema,
     csrfPrevention: true,
-    introspection: process.env.NODE_ENV === 'production',
+    introspection: true,
     plugins: [
       ApolloServerPluginDrainHttpServer({ httpServer }),
       process.env.NODE_ENV === 'production'
