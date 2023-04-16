@@ -7,7 +7,8 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/src/server.js",
-    "dev": "nodemon src/server.ts"
+    "dev": "nodemon src/server.ts",
+    "generate": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
     "@apollo/server": "^4.5.0",
@@ -39,7 +40,10 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^3.2.2",
+    "@graphql-codegen/cli": "^3.3.0",
+    "@graphql-codegen/introspection": "^3.0.1",
+    "@graphql-codegen/typescript": "^3.0.3",
+    "@graphql-codegen/typescript-resolvers": "^3.2.0",
     "@types/bcrypt": "^5.0.0",
     "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.13",

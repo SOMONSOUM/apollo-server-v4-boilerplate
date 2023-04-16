@@ -66,7 +66,7 @@ const startApolloServer = async () => {
 
   const wsServer = new WebSocketServer({
     server: httpServer,
-    path: '/subscriptions',
+    path: '/graphql',
   });
 
   const severCleanup = useServer({ schema: schema }, wsServer);

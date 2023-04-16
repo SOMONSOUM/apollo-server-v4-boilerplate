@@ -13,4 +13,14 @@ export const userTypeDefs = gql`
     phoneNumber: String
     profilePicture: String
   }
+
+  type User {
+    id: ID
+    email: String
+    password: String
+    username: String
+    fullname: String
+    phoneNumber: String
+    profilePicture: String
+  }
 `;
