@@ -20,6 +20,17 @@ export type User = {
   token: string | null;
 };
 
+export type CorsOptions = {
+  origin?: boolean | string | RegExp | (string | RegExp)[] | undefined;
+  methods?: string | string[] | undefined;
+  allowedHeaders?: string | string[] | undefined;
+  exposedHeaders?: string | string[] | undefined;
+  credentials?: boolean | undefined;
+  maxAge?: number | undefined;
+  preflightContinue?: boolean | undefined;
+  optionsSuccessStatus?: number | undefined;
+};
+
 export interface Context {
   user: User | null;
   req: Request;

@@ -36,6 +36,7 @@
     "request-promise": "^4.2.6",
     "typescript": "^4.9.5",
     "webdav": "^5.0.0-r3",
+    "winston": "^3.8.2",
     "ws": "^8.13.0",
     "zod": "^3.21.4"
   },

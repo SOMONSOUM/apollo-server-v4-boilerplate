@@ -4,6 +4,7 @@ import { userTypeDefs } from '../../modules/users/userTypeDefs';
 
 const rootTypeDefs = gql`
   scalar Upload
+  scalar JSON
 
   type Ok {
     ok: Boolean

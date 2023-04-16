@@ -13,19 +13,8 @@ import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-p
 import { schema } from './graphql';
 import { verifyToken } from './utils/jwt';
 import Knex from './database';
-import { Context, User } from './types';
+import { Context, User, CorsOptions } from './types';
 config();
-
-type CorsOptions = {
-  origin?: boolean | string | RegExp | (string | RegExp)[] | undefined;
-  methods?: string | string[] | undefined;
-  allowedHeaders?: string | string[] | undefined;
-  exposedHeaders?: string | string[] | undefined;
-  credentials?: boolean | undefined;
-  maxAge?: number | undefined;
-  preflightContinue?: boolean | undefined;
-  optionsSuccessStatus?: number | undefined;
-};
 
 interface MyContext {
   token?: String;
