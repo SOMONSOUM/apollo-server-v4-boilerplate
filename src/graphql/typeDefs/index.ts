@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
-import { uploadTypeDefs } from '../../modules/upload/uploadTypeDefs';
-import { userTypeDefs } from '../../modules/users/userTypeDefs';
+import { uploadTypeDefs } from '~/modules/upload/uploadTypeDefs';
+import { userTypeDefs } from '~/modules/users/userTypeDefs';
 
 const rootTypeDefs = gql`
   scalar Upload

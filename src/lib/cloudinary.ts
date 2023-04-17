@@ -1,5 +1,5 @@
 import cloudinary from 'cloudinary';
-import { ApolloServerFileUploads } from '../types/fileType';
+import { ApolloServerFileUploads } from '~/types/fileType';
 
 type CloudinaryUploadConfig = {
   cloudname: string;

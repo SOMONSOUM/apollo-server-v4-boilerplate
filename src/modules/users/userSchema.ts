@@ -1,6 +1,6 @@
 import * as z from 'zod';
 
-export const UserSchema = z.object({
+const UserSchema = z.object({
   email: z.string().email(),
   password: z.string().min(5),
   username: z.string(),
@@ -9,4 +9,6 @@ export const UserSchema = z.object({
   profilePicture: z.string().optional(),
 });
 
-export type User = z.infer<typeof UserSchema>;
+export type UserType = z.infer<typeof UserSchema>;
+export const validateUserInput = (userInput: any): UserType =>
+  UserSchema.parse(userInput);

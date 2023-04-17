@@ -97,6 +97,13 @@ const startApolloServer = async () => {
     }),
   );
 
+  app.get('/', (req: Request, res: Response) => {
+    return res.json({
+      name: 'Apollo Server',
+      version: '0.0.1',
+    });
+  });
+
   await httpServer
     .listen(PORT, () => {
       console.log(`🚀 Server ready at http://localhost:${PORT}/graphql`);

@@ -1,5 +1,5 @@
 import { FileUpload } from 'graphql-upload-minimal';
-import { ApolloServerFileUploads } from '../../../types/fileType';
+import { ApolloServerFileUploads } from '~/types/fileType';
 import { singleUploadMutation } from './singleFileUploadMutation';
 
 export const MultipleFileUploadMutation = async (

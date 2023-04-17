@@ -1,31 +1,38 @@
 import { ZodError } from 'zod';
-import { Args, OK, Parents, ResolverHandler } from '../../../types';
-import { formatZodError } from '../../../utils/formatZodError';
-import { hashPassword } from '../../../utils/hashPassword';
-import { User } from '../userSchema';
+import { Args, OK, Parents, ResolverHandler } from '~/types';
+import { GqlUser, GqlUserInput } from '~/generated/graphql';
+import { UserType, validateUserInput } from '../userSchema';
+import { hashPassword } from '~/utils/hashPassword';
 import { UserService } from '../userServices';
+import { formatZodError } from '~/utils/formatZodError';
+
 export const createUserMutation: ResolverHandler<Promise<OK>> = async (
   _: Parents,
-  args: Args<User>,
+  args: Args<GqlUserInput>,
   { knex },
 ) => {
-  const [user]: User[] = await knex
-    .table('users')
-    .where({ email: args.input.email });
-
-  if (user) {
-    throw new Error('User already created');
-  }
-
   try {
-    args.input.password = await hashPassword(args.input.password);
-    await UserService.createUser(knex, args.input);
+    const validatedUserInput: UserType = validateUserInput(args.input);
+    const [existingUser]: GqlUser[] = await knex
+      .table('users')
+      .where({ email: validatedUserInput.email });
+
+    if (existingUser) {
+      throw new Error('A user with the same email already exists');
+    }
+    const hashedPassword = await hashPassword(validatedUserInput.password);
+
+    await UserService.createUser(knex, {
+      ...validatedUserInput,
+      password: hashedPassword,
+    });
     return { ok: true };
   } catch (error: any) {
     if (error instanceof ZodError) {
-      let message = formatZodError(error);
-      throw new Error(message);
+      const errorMessage = formatZodError(error);
+      throw new Error(errorMessage);
+    } else {
+      throw error;
     }
-    throw error;
   }
 };

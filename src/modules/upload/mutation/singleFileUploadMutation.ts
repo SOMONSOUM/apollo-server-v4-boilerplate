@@ -1,7 +1,7 @@
 import { FileUpload } from 'graphql-upload-minimal';
 import cloudinary from 'cloudinary';
 import { config } from 'dotenv';
-import { ApolloServerFileUploads } from '../../../types/fileType';
+import { ApolloServerFileUploads } from '~/types/fileType';
 config();
 
 cloudinary.v2.config({
