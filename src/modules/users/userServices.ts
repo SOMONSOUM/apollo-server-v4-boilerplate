@@ -1,5 +1,5 @@
 import { Knex } from 'knex';
-import { GqlUser, GqlUserInput } from '../../generated/graphql';
+import { GqlUser, GqlUserInput } from '~/generated/graphql';
 
 export class UserService {
   static async createUser(

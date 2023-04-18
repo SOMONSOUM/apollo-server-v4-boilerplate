@@ -1,6 +1,6 @@
 import AWS from 'aws-sdk';
 import stream from 'stream';
-import { ApolloServerFileUploads } from '../types/fileType';
+import { ApolloServerFileUploads } from '~/types/fileType';
 
 type S3UploadConfig = {
   accessKeyId: string;

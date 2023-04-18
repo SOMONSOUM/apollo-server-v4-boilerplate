@@ -1,5 +1,5 @@
 import * as z from 'zod';
-import { GqlUserInput } from '../../generated/graphql';
+import { GqlUserInput } from '~/generated/graphql';
 
 const UserSchema = z.object({
   email: z.string().email(),
