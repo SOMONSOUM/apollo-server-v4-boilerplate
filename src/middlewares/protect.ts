@@ -1,6 +1,6 @@
-import { UNAUTHENTICATED, UNAUTHORIZED } from '~/errors';
-import { ERROR_MESSAGES } from '~/errors/errorMessages';
-import { Args, Context, Info, Parents, ResolverHandler } from '~/types';
+import { UNAUTHENTICATED, UNAUTHORIZED } from '../errors';
+import { ERROR_MESSAGES } from '../errors/errorMessages';
+import { ResolverHandler, Args, Info, Context, Parents } from '../types';
 
 type ResolverMiddleware = (next: ResolverHandler<any>) => any;
 

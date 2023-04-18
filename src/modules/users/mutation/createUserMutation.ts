@@ -1,10 +1,10 @@
+import { GqlUser, GqlUserInput } from '../../../generated/graphql';
+import { ResolverHandler, OK, Parents, Args } from '../../../types';
 import { ZodError } from 'zod';
-import { Args, OK, Parents, ResolverHandler } from '~/types';
-import { GqlUser, GqlUserInput } from '~/generated/graphql';
 import { UserType, validateUserInput } from '../userSchema';
-import { hashPassword } from '~/utils/hashPassword';
+import { hashPassword } from '../../../utils/hashPassword';
 import { UserService } from '../userServices';
-import { formatZodError } from '~/utils/formatZodError';
+import { formatZodError } from '../../../utils/formatZodError';
 
 export const createUserMutation: ResolverHandler<Promise<OK>> = async (
   _: Parents,

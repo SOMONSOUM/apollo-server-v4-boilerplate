@@ -1,4 +1,5 @@
 import * as z from 'zod';
+import { GqlUserInput } from '../../generated/graphql';
 
 const UserSchema = z.object({
   email: z.string().email(),
@@ -10,5 +11,5 @@ const UserSchema = z.object({
 });
 
 export type UserType = z.infer<typeof UserSchema>;
-export const validateUserInput = (userInput: any): UserType =>
+export const validateUserInput = (userInput: GqlUserInput): UserType =>
   UserSchema.parse(userInput);

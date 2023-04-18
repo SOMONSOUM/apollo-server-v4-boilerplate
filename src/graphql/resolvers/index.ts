@@ -1,8 +1,7 @@
 import { GraphQLUpload } from 'graphql-upload-minimal';
-import { pubsub } from '~/lib/pubsub';
-import { uploadResolver } from '~/modules/upload';
-import { userResolvers } from '~/modules/users';
-
+import { pubsub } from '../../lib/pubsub';
+import { userResolvers } from '../../modules/users';
+import { uploadResolver } from '../../modules/upload';
 const rootResolver = {
   Upload: GraphQLUpload,
   Query: {
